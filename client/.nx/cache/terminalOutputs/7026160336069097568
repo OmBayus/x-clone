@@ -1,0 +1,24 @@
+
+Initial Chunk Files                                                                                     | Names                     |  Raw Size
+polyfills.js                                                                                            | polyfills                 | 131.98 kB |
+remoteEntry.mjs                                                                                         | profile                   |  31.12 kB |
+main.js                                                                                                 | main                      |  30.06 kB |
+styles.css                                                                                              | styles                    |   1.24 kB |
+
+| Initial Total             | 194.40 kB
+
+Lazy Chunk Files                                                                                        | Names                     |  Raw Size
+node_modules_angular_core_fesm2022_core_mjs.js                                                          | -                         |   1.23 MB |
+default-node_modules_angular_router_fesm2022_router_mjs.js                                              | -                         | 333.16 kB |
+default-node_modules_angular_common_fesm2022_common_mjs.js                                              | -                         | 291.36 kB |
+default-node_modules_angular_common_fesm2022_http_mjs.js                                                | -                         | 116.82 kB |
+default-node_modules_rxjs_dist_esm_internal_observable_of_js-node_modules_rxjs_dist_esm_inter-4217e3.js | -                         |  96.24 kB |
+default-node_modules_angular_platform-browser_fesm2022_platform-browser_mjs.js                          | -                         |  90.96 kB |
+default-profile_src_app_remote-entry_entry_module_ts.js                                                 | remote-entry-entry-module |  43.94 kB |
+profile_src_bootstrap_ts.js                                                                             | bootstrap                 |   5.40 kB |
+| -                         |   0 bytes |
+| -                         |   0 bytes |
+| -                         |   0 bytes |
+| -                         |   0 bytes |
+
+Build at: 2023-10-31T22:26:15.551Z - Hash: c7e7e6b7936118c5 - Time: 6524ms

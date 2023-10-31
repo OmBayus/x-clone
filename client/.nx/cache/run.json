@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx run profile:build:development --parallel",
+    "startTime": "2023-10-31T22:36:22.167Z",
+    "endTime": "2023-10-31T22:36:26.620Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "profile:build:development",
+      "target": "build",
+      "projectName": "profile",
+      "hash": "14391954902914668297",
+      "startTime": "2023-10-31T22:36:22.169Z",
+      "endTime": "2023-10-31T22:36:26.620Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 0
+    }
+  ]
+}
