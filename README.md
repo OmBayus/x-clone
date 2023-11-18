@@ -1,6 +1,10 @@
 # X Clone
 
 
+## Design
+
+https://www.figma.com/community/file/1039189378542401977
+
 ## uml diagram
 
 https://lucid.app/lucidchart/a7a2aa84-582f-4c1f-b162-32f45e5f412b/edit?view_items=WPqOB8sP.QtB&invitationId=inv_e64a1dc6-c1df-4eef-ac51-06c9026c829b
