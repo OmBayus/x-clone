@@ -1,0 +1,18 @@
+.landing-footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    a{
+        margin: 0 10px;
+        text-decoration: none;
+        color: rgb(113, 118, 123);
+        font-size: 13px;
+        font-family: 'Roboto', sans-serif;
+        line-height: 2;
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+}
