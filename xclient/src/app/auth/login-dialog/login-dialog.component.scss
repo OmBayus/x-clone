@@ -31,4 +31,88 @@
         }
         
     }
+
+    &-content{
+        max-width: 364px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        &-header{
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        &-input-field{
+            margin-bottom: 1rem;
+            width: 100%;
+            button{
+                width: 100%;
+                border-radius: 50px;
+                margin-bottom: 1rem;
+                padding: 0.7rem 1rem;
+                cursor: pointer;
+            }
+
+            mat-form-field{
+                width: 100%;
+                color: #fff!important;
+                & > div {
+                    background: transparent!important;
+                    & > div{
+                        background: transparent!important;
+                    }
+                }
+                input{
+                    background-color: transparent;
+                }
+            }
+        }
+        
+        &-button{
+            background-color: #fff;
+            color: #000;
+            padding: 0.5rem 1rem;
+            border: none;
+            font-family: sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease-in-out;
+
+            &:hover{
+                background-color: #e6e6e6;
+            }
+        }
+
+        &-button-outline{
+            background-color: transparent;
+            border: 0.5px solid #fff;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-family: sans-serif;
+            font-weight: 600;
+            transition: background-color 0.3s ease-in-out;
+
+            &:hover{
+                background-color: #ffffff10;
+            }
+        }
+
+        &-signup{
+            margin-top: 1rem;
+            color: #ffffff67;
+            font-size: 1rem;
+            font-family: sans-serif;
+            a{
+                font-family: sans-serif;
+                color: #1589ec;
+                text-decoration: none;
+
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+        
+        
+    }
 }

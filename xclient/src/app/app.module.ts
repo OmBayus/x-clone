@@ -7,6 +7,8 @@ import { LandingModule } from './landing/landing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginDialogComponent } from './auth/login-dialog/login-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, LoginDialogComponent],
@@ -15,7 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
     AppRoutingModule,
     LandingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

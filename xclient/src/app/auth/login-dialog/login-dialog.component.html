@@ -21,4 +21,31 @@
       </svg>
     </div>
   </div>
+
+  <div class="login-dialog-content">
+    <div class="login-dialog-content-header">
+      <h1>Sign in to X</h1>
+    </div>
+    <div class="login-dialog-content-input-field">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" [value]="email" />
+      </mat-form-field>
+    </div>
+    <div class="login-dialog-content-input-field">
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [value]="password" type="password" />
+      </mat-form-field>
+    </div>
+    <div class="login-dialog-content-input-field">
+      <button class="login-dialog-content-button">Sign in</button>
+    </div>
+    <div class="login-dialog-content-input-field">
+      <button class="login-dialog-content-button-outline">Forgot password?</button>
+    </div>
+    <div class="login-dialog-content-signup">
+      Dont't have an account? <a href="#">Sign up</a>
+    </div>
+  </div>
 </div>
