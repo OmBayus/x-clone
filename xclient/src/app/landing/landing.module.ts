@@ -5,6 +5,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { LandingAuthComponent } from './landing-auth/landing-auth.component';
 import { XcomponentsModule } from '../xcomponents/xcomponents.module';
 import { LandingFooterComponent } from './landing-footer/landing-footer.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -17,7 +18,8 @@ import { LandingFooterComponent } from './landing-footer/landing-footer.componen
   imports: [
     CommonModule,
     MatGridListModule,
-    XcomponentsModule
+    XcomponentsModule,
+    MatDialogModule
   ],
   exports: [LandingComponent]
 })
