@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class XserverApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(XserverApplication.class, args);
+		System.out.println("Here we go!");
 	}
 
 }
