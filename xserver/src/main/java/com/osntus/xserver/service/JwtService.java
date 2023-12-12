@@ -94,9 +94,4 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
-
-    public boolean validateToken(String jwt, UserDetails userDetails) {
-        final String username = extractUsername(jwt);
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(jwt);
-    }
 }
