@@ -57,6 +57,7 @@ public class AuthenticationService {
             return AuthenticationResponse
                     .builder()
                     .accessToken(jwtToken)
+                    .refreshToken(refreshToken)
                     .build();
         }
     }
@@ -70,9 +71,12 @@ public class AuthenticationService {
         var user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         var jwtToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
+        saveUserToken(user, refreshToken);
         return AuthenticationResponse
                 .builder()
                 .accessToken(jwtToken)
+                .refreshToken(refreshToken)
                 .build();
     }
 
