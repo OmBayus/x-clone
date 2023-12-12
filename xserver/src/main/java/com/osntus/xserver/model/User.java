@@ -26,7 +26,6 @@ public class User implements UserDetails {
     private String password;
     private String email;
     private String username;
-    private String nickname;
     private String birthDate;
     private Boolean isDeleted;
     private String bio;

@@ -45,6 +45,7 @@ public class AuthenticationService {
                     .password(passwordEncoder.encode(registerRequest.getPassword()))
                     .email(registerRequest.getEmail())
                     .birthDate(registerRequest.getBirthDate())
+                    .isDeleted(false)
                     .build();
             //save user
 //            var savedUser = UserRepository.save(user);
