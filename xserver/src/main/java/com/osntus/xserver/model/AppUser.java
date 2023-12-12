@@ -2,21 +2,23 @@ package com.osntus.xserver.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "AppUser")
+@Entity
+@Table(name = "appuser")
 public class AppUser implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, unique = true)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private String name;
     private String password;
     private String email;
