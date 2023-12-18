@@ -28,21 +28,61 @@
     </div>
     <div class="register-dialog-content-input-field">
       <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" [value]="name" />
+      </mat-form-field>
+    </div>
+    <div class="register-dialog-content-input-field">
+      <mat-form-field class="example-full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" [value]="email" />
       </mat-form-field>
     </div>
     <div class="register-dialog-content-input-field">
       <mat-form-field class="example-full-width">
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" [value]="password" type="password" />
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [value]="username" />
       </mat-form-field>
     </div>
+    
     <div class="register-dialog-content-input-field">
-      <button class="register-dialog-content-button">Sign up</button>
-    </div>
-    <div class="register-dialog-content-signup">
-      Already have an account? <a href="#">Sign in</a>
+      <mat-form-field class="example-form-field">
+        <mat-label>Birthdate</mat-label>
+        <input matInput [matDatepicker]="datepicker" (dateChange)="changeDate($event)" />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepicker> </mat-datepicker>
+      </mat-form-field>
+      <div class="register-dialog-content-input-field">
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            [value]="password"
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="register-dialog-content-input-field">
+        <mat-form-field class="example-full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            placeholder="Confirm Password"
+            [value]="password"
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="register-dialog-content-input-field">
+        <button class="register-dialog-content-button">Sign up</button>
+      </div>
+      <div class="register-dialog-content-signup">
+        Already have an account? <a href="#">Sign in</a>
+      </div>
     </div>
   </div>
 </div>
