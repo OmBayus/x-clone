@@ -6,21 +6,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Follow {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "follow_seq")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "userid")
+    private User userid;
 
     @ManyToOne
-    @JoinColumn(name = "followed_user_id")
+    @JoinColumn(name = "followeduserid")
     private User followedUser;
+
+    private Date followedTime;
 }
