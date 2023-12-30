@@ -15,6 +15,8 @@ import { MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { MomentDateModule } from '@angular/material-moment-adapter';
+import { HomeComponent } from './home/home.component';
+import { LayoutsModule } from './layouts/layouts.module';
 
 // format is DD.MM.YYYY
 
@@ -31,11 +33,12 @@ export const MY_DATE_FORMATS = {
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginDialogComponent, RegisterDialogComponent],
+  declarations: [AppComponent, LoginDialogComponent, RegisterDialogComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LandingModule,
+    LayoutsModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatFormFieldModule,

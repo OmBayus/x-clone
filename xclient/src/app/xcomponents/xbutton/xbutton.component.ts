@@ -9,6 +9,7 @@ export class XbuttonComponent {
 
   @Input() text:string = "";
   @Input() outline:boolean=false;
+  @Input() style:{}={};
 
   ngOnInit(): void {
     console.log(this.outline);
