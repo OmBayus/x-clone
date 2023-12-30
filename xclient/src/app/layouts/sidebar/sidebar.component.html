@@ -1,1 +1,21 @@
-<p>sidebar works!</p>
+<header class="sidebar">
+  <div class="navigation">
+    <div class="navigation-item">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        svgIcon="x"
+      ></mat-icon>
+    </div>
+    <div class="navigation-item" *ngFor="let item of navigationList;">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon={{item.icon}}
+      ></mat-icon>
+      <span>{{item.name}}</span>
+    </div>
+  </div>
+  <div></div>
+  <div class="profile-settings"></div>
+</header>
