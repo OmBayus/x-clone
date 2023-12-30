@@ -7,15 +7,38 @@
         svgIcon="x"
       ></mat-icon>
     </div>
-    <div class="navigation-item" *ngFor="let item of navigationList;">
+    <div class="navigation-item" *ngFor="let item of navigationList">
       <mat-icon
         aria-hidden="false"
         aria-label="Example home icon"
-        fontIcon={{item.icon}}
+        fontIcon="{{ item.icon }}"
       ></mat-icon>
-      <span>{{item.name}}</span>
+      <span>{{ item.name }}</span>
+    </div>
+    <div [ngStyle]="{ 'margin-top': '10px' }">
+      <app-xbutton text="Post" [style]="{ width: '80%' }"></app-xbutton>
     </div>
   </div>
-  <div></div>
-  <div class="profile-settings"></div>
+  <div class="profile">
+    <div class="profile-settings" (click)="toggleProfileContent()">
+      <div class="profile-image">
+        <img
+          src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg"
+          alt="profile image"
+        />
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">Omer</div>
+        <div class="profile-nickname">@Ombayus1</div>
+      </div>
+    </div>
+    
+    <div class="profile-more" *ngIf="profile_content_open">
+      <div class="profile-more-icon">
+        <div></div>
+      </div>
+      <div class="profile-more-item">Log out</div>
+    </div>
+  </div>
+  <div class="profile-more-content" (click)="toggleProfileContent()" *ngIf="profile_content_open"></div>
 </header>

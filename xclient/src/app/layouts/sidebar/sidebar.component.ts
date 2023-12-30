@@ -37,4 +37,12 @@ export class SidebarComponent {
       icon: 'more_horiz'
     }
   ]
+
+  profile_content_open = false;
+
+  constructor() { }
+
+  toggleProfileContent() {
+    this.profile_content_open = !this.profile_content_open;
+  }
 }
