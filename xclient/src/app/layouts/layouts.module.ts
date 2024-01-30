@@ -5,6 +5,7 @@ import { MatIconModule,MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CommonLayoutComponent } from './common-layout/common-layout.component';
 import { XcomponentsModule } from '../xcomponents/xcomponents.module';
+import { SearchComponent } from './search/search.component';
 
 const X_ICON = `
 <svg
@@ -21,7 +22,7 @@ const X_ICON = `
 `;
 
 @NgModule({
-  declarations: [SidebarComponent,CommonLayoutComponent],
+  declarations: [SidebarComponent,CommonLayoutComponent, SearchComponent],
   imports: [CommonModule, MatIconModule,XcomponentsModule],
   exports: [SidebarComponent,CommonLayoutComponent],
 })
