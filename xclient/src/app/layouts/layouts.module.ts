@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { CommonLayoutComponent } from './common-layout/common-layout.component';
 import { XcomponentsModule } from '../xcomponents/xcomponents.module';
 import { SearchComponent } from './search/search.component';
+import { FollowListComponent } from './follow-list/follow-list.component';
 
 const X_ICON = `
 <svg
@@ -22,7 +23,7 @@ const X_ICON = `
 `;
 
 @NgModule({
-  declarations: [SidebarComponent,CommonLayoutComponent, SearchComponent],
+  declarations: [SidebarComponent,CommonLayoutComponent, SearchComponent, FollowListComponent],
   imports: [CommonModule, MatIconModule,XcomponentsModule],
   exports: [SidebarComponent,CommonLayoutComponent],
 })
