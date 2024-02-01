@@ -22,7 +22,6 @@ public class FollowService {
         this.userRepository = userRepository;
     }
 
-    //follows a user
     public ResponseEntity<?> followUser(Integer followedId, int userId) {
 
         Optional<User> user = userRepository.findById(userId);
@@ -45,11 +44,37 @@ public class FollowService {
         return ResponseEntity.ok(new BaseResponse<>("User followed!", followRepository.save(follow)));
     }
 
-    public ResponseEntity<?> getFollows(){
-        return null;
+    public ResponseEntity<?> getFollows(int userId) {
+        try {
+            for (Follow follow : followRepository.findAll()) {
+                if (follow.getUserid().getId() == userId) {
+                    return ResponseEntity.ok(new BaseResponse<>("Follows found!", followRepository.findAll()));
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.status(404).body(new BaseResponse<>("Follows can not found!"));
     }
 
-    public ResponseEntity<?> getFollowers(){
-        return null;
+    public ResponseEntity<?> getFollowers(int userId){
+        try {
+            for (Follow follow : followRepository.findAll()) {
+                if (follow.getFollowedUser().getId() == userId) {
+                    return ResponseEntity.ok(new BaseResponse<>("Followers found!", followRepository.findAll()));
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return ResponseEntity.status(404).body(new BaseResponse<>("Followers can not found!"));
+    }
+
+    public ResponseEntity<?> unfollowUser(Integer id, int userId) {
+        if (followRepository.existsById(String.valueOf(id)) && followRepository.findById(String.valueOf(id)).get().getUserid().getId() == userId ){
+            followRepository.deleteById(String.valueOf(id));
+            return ResponseEntity.ok(new BaseResponse<>("User unfollowed!"));
+        }
+        else return ResponseEntity.status(404).body(new BaseResponse<>("Follow can not found!"));
     }
 }

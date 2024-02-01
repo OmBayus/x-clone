@@ -18,4 +18,19 @@ public class FollowController {
     public ResponseEntity<?> followUser(@RequestParam Integer id, @AuthenticationPrincipal User user){
         return followService.followUser(id, user.getId());
     }
+
+    @GetMapping("/follows")
+    public ResponseEntity<?> getFollows(@AuthenticationPrincipal User user){
+        return followService.getFollows(user.getId());
+    }
+
+    @GetMapping("/followers")
+    public ResponseEntity<?> getFollowers(@AuthenticationPrincipal User user){
+        return followService.getFollowers(user.getId());
+    }
+
+    @DeleteMapping("/")
+    public ResponseEntity<?> unfollowUser(@RequestParam Integer id, @AuthenticationPrincipal User user){
+        return followService.unfollowUser(id, user.getId());
+    }
 }
