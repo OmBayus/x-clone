@@ -26,6 +26,7 @@ public class PostService {
                     .username(user.getUsername())
                     .date(new Date())
                     .isDeleted(false)
+                    .likes(0)
                     .build();
             postRepository.save(post);
             return ResponseEntity.ok().build();
@@ -33,23 +34,27 @@ public class PostService {
         return null;
     }
 
-    public void deletePost(int postId) {
+    public ResponseEntity<?> deletePost(int postId) {
         if (!postRepository.existsById(postId)) {
             System.out.println("Post does not exist");
+            return null;
         } else {
             var post = postRepository.findById(postId).get();
             post.setDeleted(true);
             postRepository.save(post);
+            return ResponseEntity.ok().build();
         }
     }
 
-    public void updatePost(int postId, String text) {
+    public ResponseEntity<?> updatePost(int postId, String text) {
         if (!postRepository.existsById(postId)) {
             System.out.println("Post does not exist");
+            return null;
         } else {
             var post = postRepository.findById(postId).get();
             post.setText(text);
             postRepository.save(post);
+            return ResponseEntity.ok().build();
         }
     }
 

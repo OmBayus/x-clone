@@ -23,5 +23,6 @@ public class Post {
     public String username;
     public Date date;
     public boolean isDeleted;
+    public int likes;
 
 }
