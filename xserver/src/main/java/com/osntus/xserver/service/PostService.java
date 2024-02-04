@@ -1,5 +1,6 @@
 package com.osntus.xserver.service;
 
+import com.osntus.xserver.dto.BaseResponse;
 import com.osntus.xserver.model.Post;
 import com.osntus.xserver.model.User;
 import com.osntus.xserver.repository.PostRepository;
@@ -20,6 +21,7 @@ public class PostService {
     public ResponseEntity<?> createPost(String text, User user) {
         if (!userRepository.existsByUsername(user.getUsername())) {
             System.out.println("User does not exist");
+            return ResponseEntity.status(404).body(new BaseResponse<>("User does not exist"));
         } else {
             var post = Post.builder()
                     .text(text)
@@ -29,41 +31,46 @@ public class PostService {
                     .likes(0)
                     .build();
             postRepository.save(post);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body(new BaseResponse<>("Post created!", post));
         }
-        return null;
     }
 
     public ResponseEntity<?> deletePost(int postId) {
         if (!postRepository.existsById(postId)) {
-            System.out.println("Post does not exist");
-            return null;
+            return ResponseEntity.status(404).body(new BaseResponse<>("Post does not exist"));
+        } else if (postRepository.findById(postId).get().isDeleted()) {
+            return ResponseEntity.status(406).body(new BaseResponse<>("Post already deleted"));
         } else {
             var post = postRepository.findById(postId).get();
             post.setDeleted(true);
             postRepository.save(post);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body(new BaseResponse<>("Post deleted!"));
         }
     }
 
     public ResponseEntity<?> updatePost(int postId, String text) {
         if (!postRepository.existsById(postId)) {
             System.out.println("Post does not exist");
-            return null;
+            return ResponseEntity.status(404).body(new BaseResponse<>("Post does not exist"));
+        }
+        else if(postRepository.findById(postId).get().isDeleted()) {
+            return ResponseEntity.status(406).body(new BaseResponse<>("Post is deleted"));
         } else {
             var post = postRepository.findById(postId).get();
             post.setText(text);
             postRepository.save(post);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok().body(new BaseResponse<>("Post updated!", post));
         }
     }
 
-    public Post getPost(int postId) {
+    public ResponseEntity<?> getPost(int postId) {
         if (!postRepository.existsById(postId)) {
-            System.out.println("Post does not exist");
-            return null;
-        } else {
-            return postRepository.findById(postId).get();
+            return ResponseEntity.status(404).body(new BaseResponse<>("Post does not exist"));
+        } else if (postRepository.findById(postId).get().isDeleted()) {
+            return ResponseEntity.status(406).body(new BaseResponse<>("Post is deleted"));
+        }
+        else {
+            return ResponseEntity.ok().body(new BaseResponse<>("Post found!", postRepository.findById(postId).get()));
         }
     }
 }
