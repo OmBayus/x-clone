@@ -26,18 +26,18 @@ public class PostController {
     }
 
     @DeleteMapping("/{postId}")
-    public void deletePost(@PathVariable int postId) {
+    public ResponseEntity<?> deletePost(@PathVariable int postId) {
         try {
-            postService.deletePost(postId);
+            return postService.deletePost(postId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @PutMapping("/{postId}")
-    public void updatePost(@PathVariable int postId, @RequestBody PostRequest postRequest) {
+    public ResponseEntity<?> updatePost(@PathVariable int postId, @RequestBody PostRequest postRequest) {
         try {
-            postService.updatePost(postId, postRequest.getText());
+            return postService.updatePost(postId, postRequest.getText());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
