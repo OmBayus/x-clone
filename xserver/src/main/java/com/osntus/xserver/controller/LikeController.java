@@ -30,7 +30,6 @@ public class LikeController {
         if (postId == 0) {
             return ResponseEntity.badRequest().build();
         }
-        likeService.handleLike(user.getUsername(), postId);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(likeService.handleLike(user.getUsername(), postId));
     }
 }

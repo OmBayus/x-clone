@@ -1,5 +1,6 @@
 package com.osntus.xserver.service;
 
+import com.osntus.xserver.dto.BaseResponse;
 import com.osntus.xserver.model.User;
 import com.osntus.xserver.dto.AuthenticationResponse;
 import com.osntus.xserver.dto.LoginRequest;
@@ -8,6 +9,7 @@ import com.osntus.xserver.model.Token;
 import com.osntus.xserver.repository.TokenRepository;
 import com.osntus.xserver.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,15 +26,11 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final TokenRepository tokenRepository;
 
-    public AuthenticationResponse register(RegisterRequest registerRequest) {
-        //check if user exists
+    public ResponseEntity<?> register(RegisterRequest registerRequest) {
         if (userRepository.existsByUsername(registerRequest.getUsername())) {
-            //throw exception in console
-            System.out.println("User already exists");
-            return null;
+            return ResponseEntity.status(409).body(new BaseResponse<>("User already exists!"));
         }
         else {
-            //create user
             var user = User.builder()
                     .name(registerRequest.getName())
                     .username(registerRequest.getUsername())
@@ -41,16 +39,15 @@ public class AuthenticationService {
                     .birthDate(registerRequest.getBirthDate())
                     .isDeleted(false)
                     .build();
-            //save user
+
             var savedUser = userRepository.save(user);
-            //generate token
             var jwtToken = jwtService.generateToken(user);
             saveUserToken(savedUser, jwtToken);
-            //return token
-            return AuthenticationResponse
+
+            return ResponseEntity.ok(AuthenticationResponse
                     .builder()
                     .accessToken(jwtToken)
-                    .build();
+                    .build());
         }
     }
 
@@ -60,12 +57,10 @@ public class AuthenticationService {
                         loginRequest.getPassword()
                 )
         );
-        var user = userRepository.findByUsername(loginRequest.getUsername())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        var user = userRepository.findByUsername(loginRequest.getUsername()).get();
         var jwtToken = jwtService.generateToken(user);
         saveUserToken(user, jwtToken);
-        return AuthenticationResponse
-                .builder()
+        return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .build();
     }
