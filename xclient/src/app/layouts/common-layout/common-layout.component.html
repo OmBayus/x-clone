@@ -1,14 +1,16 @@
 <div class="app-common-layout">
   <div class="container mx-auto px-4">
-    <div class="grid grid-cols-4 gap-1">
+    <div class="grid grid-cols-4">
       <div>
         <app-sidebar></app-sidebar>
       </div>
       <div class="col-span-2">
         <ng-content></ng-content>
       </div>
-      <div class="py-2">
-        <app-search></app-search>
+      <div>
+        <div class="search">
+          <app-search></app-search>
+        </div>
         <app-follow-list></app-follow-list>
         <app-footer></app-footer>
       </div>

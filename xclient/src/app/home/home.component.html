@@ -1,3 +1,116 @@
 <app-common-layout>
-    
+  <div class="home">
+    <div class="grid grid-cols-7 hero">
+      <div class="col-span-3 hero-item">For you</div>
+      <div class="col-span-3 hero-item active">Following</div>
+      <div class="hero-settings">
+        <div class="hero-settings-button">
+          <mat-icon svgIcon="xsettings"></mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="share grid grid-cols-7">
+      <div class="share-profil col-span-1">
+        <img
+          src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg"
+          alt="profile image"
+        />
+      </div>
+      <div class="share-content col-span-6">
+        <div class="share-content-input">
+          <textarea
+            (input)="auto_grow($event)"
+            placeholder="What's happening?"
+          ></textarea>
+        </div>
+        <div class="share-content-buttons">
+          <div class="share-content-buttons-icons">
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="ximage"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xgif"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xpoll"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xsmile"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xcalendar"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xlocation"></mat-icon>
+            </div>
+          </div>
+          <div class="share-content-buttons-post">
+            <button disabled>Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post grid grid-cols-7" *ngFor="let post of [1, 2, 3, 4]">
+      <div class="post-profil col-span-1">
+        <img
+          src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg"
+          alt="profile image"
+        />
+      </div>
+      <div class="post-content col-span-6">
+        <div class="post-content-username">
+          <span>John Doe</span>
+          <span>@johndoe</span>
+          <span>·</span>
+          <span>Jan 7</span>
+        </div>
+        <div class="post-content-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus minus
+          voluptates assumenda exercitationem, molestias quidem necessitatibus
+          numquam ab quos excepturi consequuntur tempora est unde illum
+          aspernatur obcaecati perferendis! Ea, eius.
+        </div>
+        <div class="post-content-actions grid grid-cols-5">
+          <div class="post-content-actions-icon">
+            <div>
+              <mat-icon svgIcon="xcomment"></mat-icon>
+            </div>
+            <span>2</span>
+          </div>
+          <div class="post-content-actions-icon">
+            <div>
+              <mat-icon svgIcon="xretweet"></mat-icon>
+            </div>
+            <span>3</span>
+          </div>
+          <div class="post-content-actions-icon">
+            <div>
+              <mat-icon svgIcon="xlike"></mat-icon>
+            </div>
+            <span>4</span>
+          </div>
+          <div class="post-content-actions-icon">
+            <div>
+              <mat-icon svgIcon="xview"></mat-icon>
+            </div>
+            <span>5</span>
+          </div>
+          <div class="post-content-actions-share">
+            <div class="post-content-actions-icon">
+              <div>
+                <mat-icon svgIcon="xbookmark"></mat-icon>
+              </div>
+            </div>
+            <div class="post-content-actions-icon">
+              <div>
+                <mat-icon svgIcon="xshare"></mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </app-common-layout>
