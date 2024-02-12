@@ -1,5 +1,12 @@
-.app-common-layout{
-    background-color: black;
-    min-height: 100vh;
-}
+.app-common-layout {
+  background-color: black;
+  min-height: 100vh;
 
+  .search {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    padding-top:  0.55rem;
+    padding-bottom: 0.5rem;
+  }
+}
