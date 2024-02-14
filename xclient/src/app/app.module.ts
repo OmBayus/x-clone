@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 import { HomeComponent } from './home/home.component';
 import { LayoutsModule } from './layouts/layouts.module';
+import { UserComponent } from './user/user.component';
 
 // format is DD.MM.YYYY
 
@@ -33,7 +34,7 @@ export const MY_DATE_FORMATS = {
 };
 
 @NgModule({
-  declarations: [AppComponent, LoginDialogComponent, RegisterDialogComponent, HomeComponent],
+  declarations: [AppComponent, LoginDialogComponent, RegisterDialogComponent, HomeComponent, UserComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -105,6 +106,10 @@ export class AppModule {
       'xshare',
       sanitizer.bypassSecurityTrustHtml(SHARE_ICON)
     );
+    iconRegistry.addSvgIconLiteral(
+      'xback',
+      sanitizer.bypassSecurityTrustHtml(BACK_ICON)
+    );
   }
 }
 
@@ -159,4 +164,8 @@ const BOOKMARK_ICON = `
 
 const SHARE_ICON = `
 <svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1xvli5t r-1hdv0qi"><g><path d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z"></path></g></svg>
+`;
+
+const BACK_ICON = `
+<svg viewBox="0 0 24 24" aria-hidden="true" class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-z80fyv r-19wmn03" style="color: rgb(239, 243, 244);"><g><path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z"></path></g></svg>
 `;
