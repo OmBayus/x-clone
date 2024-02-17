@@ -23,12 +23,12 @@ public class AuthenticationController {
     // login
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok(service.login(loginRequest));
+        return service.login(loginRequest);
     }
 
     // access token decode
     @GetMapping("/")
     public ResponseEntity<?> decode(@RequestHeader("Authorization") String token) {
-        return ResponseEntity.ok(service.decode(token));
+        return service.decode(token);
     }
 }

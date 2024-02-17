@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import static com.osntus.xserver.model.TokenType.*;
 
 @Service
@@ -53,7 +54,7 @@ public class AuthenticationService {
         }
     }
 
-    public AuthenticationResponse login(LoginRequest loginRequest) {
+    public ResponseEntity<?> login(LoginRequest loginRequest) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsername(),
                         loginRequest.getPassword()
@@ -62,10 +63,12 @@ public class AuthenticationService {
         var user = userRepository.findByUsername(loginRequest.getUsername()).get();
         var jwtToken = jwtService.generateToken(user);
         saveUserToken(user, jwtToken);
-        return AuthenticationResponse.builder()
+        return ResponseEntity.ok(AuthenticationResponse
+                .builder()
                 .accessToken(jwtToken)
                 .user(user)
-                .build();
+                .build()
+        );
     }
 
     private void saveUserToken(User user, String jwtToken) {
@@ -79,7 +82,7 @@ public class AuthenticationService {
         tokenRepository.save(token);
     }
 
-    public Object decode(String token) {
-        return userRepository.findByUsername(jwtService.extractUsername(token));
+    public ResponseEntity<?> decode(String token) {
+        return ResponseEntity.ok(userRepository.findByUsername(jwtService.extractUsername(token)));
     }
 }

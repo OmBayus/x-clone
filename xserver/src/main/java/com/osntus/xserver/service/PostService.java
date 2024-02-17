@@ -20,7 +20,6 @@ public class PostService {
 
     public ResponseEntity<?> createPost(String text, User user) {
         if (!userRepository.existsByUsername(user.getUsername())) {
-            System.out.println("User does not exist");
             return ResponseEntity.status(404).body(new BaseResponse<>("User does not exist"));
         } else {
             var post = Post.builder()
@@ -50,7 +49,6 @@ public class PostService {
 
     public ResponseEntity<?> updatePost(int postId, String text) {
         if (!postRepository.existsById(postId)) {
-            System.out.println("Post does not exist");
             return ResponseEntity.status(404).body(new BaseResponse<>("Post does not exist"));
         }
         else if(postRepository.findById(postId).get().isDeleted()) {
@@ -71,6 +69,33 @@ public class PostService {
         }
         else {
             return ResponseEntity.ok().body(new BaseResponse<>("Post found!", postRepository.findById(postId).get()));
+        }
+    }
+
+    public ResponseEntity<?> getAllPosts(String username) {
+        if (!userRepository.existsByUsername(username)) {
+            return ResponseEntity.status(404).body(new BaseResponse<>("User does not exist"));
+        } else if (postRepository.findAll().isEmpty()) {
+            return ResponseEntity.status(404).body(new BaseResponse<>("No posts found"));
+        } else {
+            try {
+                for (Post post : postRepository.findAll()) {
+                    if (post.getUsername().equals(username)) {
+                        return ResponseEntity.ok(new BaseResponse<>("Posts found!", postRepository.findAll()));
+                    }
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            return ResponseEntity.status(404).body(new BaseResponse<>("Posts can not found!"));
+        }
+    }
+
+    public ResponseEntity<?> getAllPosts() {
+        if (postRepository.findAll().isEmpty()) {
+            return ResponseEntity.status(404).body(new BaseResponse<>("No posts found"));
+        } else {
+            return ResponseEntity.ok(new BaseResponse<>("Posts found!", postRepository.findAll()));
         }
     }
 }
