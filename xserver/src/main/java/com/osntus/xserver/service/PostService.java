@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +25,8 @@ public class PostService {
             var post = Post.builder()
                     .text(text)
                     .username(user.getUsername())
-                    .date(new Date())
+                    .name(user.getName())
+                    .date(LocalDateTime.now())
                     .isDeleted(false)
                     .likes(0)
                     .build();

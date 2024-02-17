@@ -8,6 +8,7 @@ import com.osntus.xserver.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -33,10 +34,9 @@ public class FollowService {
         if (user.get().getId() == followedUser.get().getId()) return ResponseEntity.status(406).body(new BaseResponse<>("You can not follow yourself!"));
         if (followRepository.existsFollowByFollowedUserAndUserid(followedUser.get(), user.get())) return ResponseEntity.status(406).body(new BaseResponse<>("User Already Following!"));
 
-        Date date = new Date();
         var follow = Follow
                 .builder()
-                .followedTime(date)
+                .followedTime(LocalDateTime.now())
                 .userid(user.get())
                 .followedUser(followedUser.get())
                 .build();
