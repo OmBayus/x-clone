@@ -46,7 +46,25 @@ public class PostController {
     @GetMapping("/{postId}")
     public ResponseEntity<?> getPost(@PathVariable int postId) {
         try {
-            return ResponseEntity.ok(postService.getPost(postId));
+            return postService.getPost(postId);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping("/all/{username}")
+    public ResponseEntity<?> getAllPosts(@PathVariable String username) {
+        try {
+            return postService.getAllPosts(username);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllPosts() {
+        try {
+            return postService.getAllPosts();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

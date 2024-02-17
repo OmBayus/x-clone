@@ -2,6 +2,7 @@ package com.osntus.xserver.service;
 
 import com.osntus.xserver.dto.BaseResponse;
 import com.osntus.xserver.model.Like;
+import com.osntus.xserver.model.Post;
 import com.osntus.xserver.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -73,6 +74,19 @@ public class LikeService {
                 postRepository.save(post);
                 return ResponseEntity.ok().body(new BaseResponse<>("Liked"));
             }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new BaseResponse<>("Error"));
+        }
+    }
+
+    public ResponseEntity<?> getAllLikes(String username) {
+        try {
+            List<Post> list = new ArrayList<>();
+            for (Like like : likeRepository.findAll()) {
+                if (like.username.equals(username) && like.isLiked)
+                    list.add(postRepository.findById(like.postId).get());
+            }
+            return ResponseEntity.ok().body(new BaseResponse<>("Likes found", list));
         } catch (Exception e) {
             return ResponseEntity.status(500).body(new BaseResponse<>("Error"));
         }

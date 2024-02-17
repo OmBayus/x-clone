@@ -1,39 +1,4 @@
 <div class="follow-list">
     <h1>Who to follow</h1>
-    <div class="follow grid grid-cols-4 gap-1">
-        <div class="follow-image">
-            <img src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg" alt="profil"/>
-        </div>
-        <div class="follow-info col-span-2">
-            <div class="follow-info-name">Ombayus</div>
-            <div class="follow-info-username">@ombayus</div>
-        </div>
-        <div class="follow-button">
-            <button>Follow</button>
-        </div>
-    </div>
-    <div class="follow grid grid-cols-4 gap-1">
-        <div class="follow-image">
-            <img src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg" alt="profil"/>
-        </div>
-        <div class="follow-info col-span-2">
-            <div class="follow-info-name">Ombayus</div>
-            <div class="follow-info-username">@ombayus</div>
-        </div>
-        <div class="follow-button">
-            <button>Follow</button>
-        </div>
-    </div>
-    <div class="follow grid grid-cols-4 gap-1">
-        <div class="follow-image">
-            <img src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg" alt="profil"/>
-        </div>
-        <div class="follow-info col-span-2">
-            <div class="follow-info-name">Ombayus</div>
-            <div class="follow-info-username">@ombayus</div>
-        </div>
-        <div class="follow-button">
-            <button>Follow</button>
-        </div>
-    </div>
+    <app-follow-user *ngFor="let user of users" [user]="user"></app-follow-user>
 </div>

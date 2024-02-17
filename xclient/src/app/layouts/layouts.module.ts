@@ -8,6 +8,7 @@ import { XcomponentsModule } from '../xcomponents/xcomponents.module';
 import { SearchComponent } from './search/search.component';
 import { FollowListComponent } from './follow-list/follow-list.component';
 import { FooterComponent } from './footer/footer.component';
+import { FollowUserComponent } from './follow-list/follow-user/follow-user.component';
 
 const X_ICON = `
 <svg
@@ -24,7 +25,7 @@ const X_ICON = `
 `;
 
 @NgModule({
-  declarations: [SidebarComponent,CommonLayoutComponent, SearchComponent, FollowListComponent, FooterComponent],
+  declarations: [SidebarComponent,CommonLayoutComponent, SearchComponent, FollowListComponent, FooterComponent, FollowUserComponent],
   imports: [CommonModule, MatIconModule,XcomponentsModule],
   exports: [SidebarComponent,CommonLayoutComponent],
 })

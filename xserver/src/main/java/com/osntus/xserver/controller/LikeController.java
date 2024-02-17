@@ -30,6 +30,11 @@ public class LikeController {
         if (postId == 0) {
             return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(likeService.handleLike(user.getUsername(), postId));
+        return likeService.handleLike(user.getUsername(), postId);
+    }
+
+    @GetMapping("/all/{username}")
+    public ResponseEntity<?> getAllLikes(@PathVariable String username) {
+        return likeService.getAllLikes(username);
     }
 }

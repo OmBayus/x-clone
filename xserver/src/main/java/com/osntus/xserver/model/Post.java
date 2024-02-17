@@ -1,5 +1,6 @@
 package com.osntus.xserver.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,7 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -20,8 +21,10 @@ public class Post {
     @GeneratedValue
     public int id;
     public String text;
+    public String name;
     public String username;
-    public Date date;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    public LocalDateTime date;
     public boolean isDeleted;
     public int likes;
 

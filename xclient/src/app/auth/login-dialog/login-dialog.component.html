@@ -28,18 +28,18 @@
     </div>
     <div class="login-dialog-content-input-field">
       <mat-form-field class="example-full-width">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" [value]="email" />
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [(ngModel)]="username" />
       </mat-form-field>
     </div>
     <div class="login-dialog-content-input-field">
       <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" [value]="password" type="password" />
+        <input matInput placeholder="Password" [(ngModel)]="password" type="password" />
       </mat-form-field>
     </div>
     <div class="login-dialog-content-input-field">
-      <button class="login-dialog-content-button">Sign in</button>
+      <button class="login-dialog-content-button" (click)="login()">Sign in</button>
     </div>
     <div class="login-dialog-content-input-field">
       <button class="login-dialog-content-button-outline">Forgot password?</button>
