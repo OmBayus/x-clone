@@ -48,6 +48,7 @@ public class AuthenticationService {
             return ResponseEntity.ok(AuthenticationResponse
                     .builder()
                     .accessToken(jwtToken)
+                    .user(savedUser)
                     .build());
         }
     }
@@ -63,6 +64,7 @@ public class AuthenticationService {
         saveUserToken(user, jwtToken);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
+                .user(user)
                 .build();
     }
 

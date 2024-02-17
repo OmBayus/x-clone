@@ -1,6 +1,5 @@
 package com.osntus.xserver.controller;
 
-import com.osntus.xserver.dto.AuthenticationResponse;
 import com.osntus.xserver.dto.LoginRequest;
 import com.osntus.xserver.dto.RegisterRequest;
 import com.osntus.xserver.service.AuthenticationService;
