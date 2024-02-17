@@ -21,6 +21,53 @@ export class AuthService {
     // }
   }
 
+  async isAuthenticated(): Promise<boolean> {
+    if (this.currentUser()) {
+      return true;
+    }
+    const token = this.cookieService.get('token');
+    if (token) {
+      await this.authenticate();
+    }
+    if (this.currentUser()) {
+      return true;
+    }
+    return false;
+  }
+
+  async authenticate(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const token = this.cookieService.get('token');
+      if (token) {
+        this.http
+          .get<any>('http://localhost:8080/app/v1/auth/', {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          .subscribe((response) => {
+            this.setUser({
+              name: response.name,
+              email: response.email,
+              username: response.username,
+              birthDate: response.birthDate,
+              bio: response.bio,
+              token,
+            });
+            resolve();
+          });
+      } else {
+        resolve();
+        this.currentUser.set(null);
+      }
+    });
+  }
+
+  setUser(user: User): void {
+    this.currentUser.set(user);
+    this.cookieService.set('token', user.token, 1);
+  }
+
   register(
     name: string,
     email: string,
@@ -40,29 +87,37 @@ export class AuthService {
         birthDate: birthdate,
       })
       .subscribe((response) => {
-        console.log(response);
         this.setUser({
-          name,
-          email,
-          username,
-          birthDate: birthdate,
-          bio,
-          token: response!.access_token,
+          name: response.user.name,
+          email: response.user.email,
+          username: response.user.username,
+          birthDate: response.user.birthDate,
+          bio: response.user.bio,
+          token: response.access_token,
         });
         this.router.navigateByUrl('/home');
         callback();
       });
   }
 
-  setUser(user: User): void {
-    this.currentUser.set(user);
-    this.cookieService.set('token', user.token, 1);
-  }
-
-  login(user: User): void {
-    this.currentUser.set(user);
-    this.cookieService.set('token', user.token, 1);
-    this.router.navigateByUrl('/');
+  login(username: string, password: string, callback = () => {}): void {
+    this.http
+      .post<any>('http://localhost:8080/app/v1/auth/login', {
+        username,
+        password,
+      })
+      .subscribe((response) => {
+        this.setUser({
+          name: response.user.name,
+          email: response.user.email,
+          username: response.user.username,
+          birthDate: response.user.birthDate,
+          bio: response.user.bio,
+          token: response.access_token,
+        });
+        this.router.navigateByUrl('/home');
+        callback();
+      });
   }
 
   logout(): void {

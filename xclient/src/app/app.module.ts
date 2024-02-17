@@ -20,6 +20,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { UserComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './auth.guard';
 
 // format is DD.MM.YYYY
 
@@ -51,9 +52,9 @@ export const MY_DATE_FORMATS = {
     MatButtonModule,
     MomentDateModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }],
+  providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {
