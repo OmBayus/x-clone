@@ -6,10 +6,7 @@ import com.osntus.xserver.dto.RegisterRequest;
 import com.osntus.xserver.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("app/v1/auth")
@@ -21,7 +18,7 @@ public class AuthenticationController {
     // register
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
-        return ResponseEntity.ok(service.register(registerRequest));
+        return service.register(registerRequest);
     }
 
     // login

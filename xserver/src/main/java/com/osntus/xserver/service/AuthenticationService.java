@@ -37,6 +37,7 @@ public class AuthenticationService {
                     .password(passwordEncoder.encode(registerRequest.getPassword()))
                     .email(registerRequest.getEmail())
                     .birthDate(registerRequest.getBirthDate())
+                    .bio(registerRequest.getBio())
                     .isDeleted(false)
                     .build();
 

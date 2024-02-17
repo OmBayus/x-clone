@@ -18,6 +18,8 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
 import { HomeComponent } from './home/home.component';
 import { LayoutsModule } from './layouts/layouts.module';
 import { UserComponent } from './user/user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 // format is DD.MM.YYYY
 
@@ -48,6 +50,8 @@ export const MY_DATE_FORMATS = {
     MatNativeDateModule,
     MatButtonModule,
     MomentDateModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [{ provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }],
   bootstrap: [AppComponent],
