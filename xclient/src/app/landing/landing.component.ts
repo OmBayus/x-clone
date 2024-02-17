@@ -11,8 +11,8 @@ export class LandingComponent {
 
 
   constructor(private authService:AuthService,private router:Router) {}
-  ngOnInit() {
-    if (this.authService.currentUser()) {
+  async ngOnInit() {
+    if (await this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/home');
     }
   }

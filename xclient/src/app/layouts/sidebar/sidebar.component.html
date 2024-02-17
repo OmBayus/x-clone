@@ -7,7 +7,7 @@
         svgIcon="x"
       ></mat-icon>
     </div>
-    <div class="navigation-item" *ngFor="let item of navigationList">
+    <div class="navigation-item {{item.disabled ? 'disabled' : ''}}" *ngFor="let item of navigationList" (click)="navigateTo(item.route)">
       <mat-icon
         aria-hidden="false"
         aria-label="Example home icon"

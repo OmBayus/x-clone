@@ -5,12 +5,19 @@
   position: sticky;
   top: 0;
   .navigation {
-    .navigation-item {
+    &-item {
       display: flex;
       align-items: center;
       padding: 8px;
       border-radius: 50px;
       cursor: pointer;
+      &.disabled {
+        cursor: default;
+        opacity: 0.5;
+        &:hover {
+          background-color: transparent;
+        }
+      }
       * {
         margin-right: 10px;
       }
