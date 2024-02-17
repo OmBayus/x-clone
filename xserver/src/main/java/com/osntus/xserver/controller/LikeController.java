@@ -32,4 +32,9 @@ public class LikeController {
         }
         return likeService.handleLike(user.getUsername(), postId);
     }
+
+    @GetMapping("/all/{username}")
+    public ResponseEntity<?> getAllLikes(@PathVariable String username) {
+        return likeService.getAllLikes(username);
+    }
 }
