@@ -16,7 +16,7 @@
       <span>{{ item.name }}</span>
     </div>
     <div [ngStyle]="{ 'margin-top': '10px' }">
-      <app-xbutton text="Post" [style]="{ width: '80%' }"></app-xbutton>
+      <app-xbutton text="Post" [style]="{ width: '80%' }" (click)="navigateTo('/home')"></app-xbutton>
     </div>
   </div>
   <div class="profile">
