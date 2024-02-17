@@ -17,6 +17,8 @@ export class UserComponent {
   posts: any[] = [];
   likedPosts: any[] = [];
   isFollowing = false;
+  followingCount = 0;
+  followersCount = 0;
   user: any = {
     id: '',
     username: '',
@@ -41,15 +43,16 @@ export class UserComponent {
     effect(async () => {
       this.followService.currentUserId();
       if (this.user && this.user.username) {
-        this.isFollowing = await this.followService.isFollowing(
-          this.user.username
-        );
+        this.getUser(this.user.username);
       }
     });
   }
 
   async getUser(username: string) {
     const _user = await this.userService.getUser(username);
+    const [following, followers] = await this.userService.stats(username);
+    this.followingCount = following;
+    this.followersCount = followers;
     this.user = {
       id: _user.id,
       name: _user.name,

@@ -8,26 +8,25 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class PostService {
-  constructor(
-    private cookieService: CookieService,
-    private http: HttpClient
-  ) {}
+  constructor(private cookieService: CookieService, private http: HttpClient) {}
 
-
-  post(content: string,callback=()=>{}) {
+  post(content: string, callback = () => {}) {
     const token = this.cookieService.get('token');
     if (token) {
       this.http
         .post<any>('http://localhost:8080/app/v1/posting/', {
-          text:content,
+          text: content,
         })
         .subscribe(() => {
+          callback();
+        })
+        .add(() => {
           callback();
         });
     }
   }
 
-  async getPosts(): Promise<any>{
+  async getPosts(): Promise<any> {
     return new Promise((resolve) => {
       const token = this.cookieService.get('token');
       if (token) {
@@ -35,6 +34,9 @@ export class PostService {
           .get<any>('http://localhost:8080/app/v1/posting/all')
           .subscribe((response) => {
             resolve(response.payload);
+          })
+          .add(() => {
+            resolve([]);
           });
       } else {
         resolve([]);
@@ -42,7 +44,7 @@ export class PostService {
     });
   }
 
-  async getUserPosts(username:string):Promise<any> {
+  async getUserPosts(username: string): Promise<any> {
     return new Promise((resolve) => {
       const token = this.cookieService.get('token');
       if (token) {
@@ -50,11 +52,13 @@ export class PostService {
           .get<any>(`http://localhost:8080/app/v1/posting/all/${username}`)
           .subscribe((response) => {
             resolve(response.payload);
+          })
+          .add(() => {
+            resolve([]);
           });
       } else {
         resolve([]);
       }
     });
   }
-
 }

@@ -29,4 +29,14 @@ export class UserService {
         });
     });
   }
+
+  stats(username: string): Promise<any> {
+    return new Promise((resolve) => {
+      this.http
+        .get<any>(`http://localhost:8080/app/v1/user/stats/${username}`)
+        .subscribe((response) => {
+          resolve(response);
+        });
+    });
+  }
 }
