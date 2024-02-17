@@ -24,4 +24,14 @@ export class LikeService {
         });
     });
   }
+
+  async getLikedPosts(username: string): Promise<any> {
+    return new Promise((resolve) => {
+      this.http
+        .get<any>('http://localhost:8080/app/v1/like/all/' + username)
+        .subscribe((response) => {
+          resolve(response.payload);
+        });
+    });
+  }
 }

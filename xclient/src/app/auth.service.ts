@@ -14,12 +14,7 @@ export class AuthService {
     private router: Router,
     private cookieService: CookieService,
     private http: HttpClient
-  ) {
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //   this.currentUser.set({ token });
-    // }
-  }
+  ) {}
 
   async isAuthenticated(): Promise<boolean> {
     if (this.currentUser()) {

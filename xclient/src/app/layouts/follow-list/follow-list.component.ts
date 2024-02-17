@@ -11,14 +11,10 @@ export class FollowListComponent {
 
   users: any[] = [];
 
-  constructor(private userService: UserService,private router:Router) {}
+  constructor(private userService: UserService) {}
 
   async ngOnInit() {
     this.users = await this.userService.suggestion();
-  }
-
-  navigateToUser(username: string) {
-    this.router.navigate([`/${username}`]);
   }
   
 }

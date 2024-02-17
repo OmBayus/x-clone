@@ -7,24 +7,36 @@
         </div>
       </div>
       <div class="col-span-7 nav-user-info">
-        <div class="nav-user-info-name">{{user.name}}</div>
-        <div class="nav-user-info-post">{{user.postCount}} posts</div>
+        <div class="nav-user-info-name">{{ user.name }}</div>
+        <div class="nav-user-info-post">{{ user.postCount }} posts</div>
       </div>
     </div>
     <div class="user-profil">
       <div class="user-profil-background"></div>
       <div class="user-profil-info">
         <div class="user-profil-info-image">
-          <img
-            src="assets/profil.png"
-            alt="user image"
-          />
+          <img src="assets/profil.png" alt="user image" />
+          <div
+            class="user-profil-info-image-button"
+            [hidden]="user.username === authService.currentUser()?.username"
+          >
+            <button
+              (mouseenter)="onMouseEnterFollowing()"
+              (mouseout)="onMouseLeaveFollowing()"
+              (click)="isFollowing ? unfollow() : follow()"
+              class="{{ isFollowing ? 'following' : '' }}"
+            >
+              {{ isFollowing ? hovered ? "Unfollow": "Following" : "Follow" }}
+            </button>
+          </div>
         </div>
         <div class="user-profil-info-detail">
-          <div class="user-profil-info-detail-name">{{user.name}}</div>
-          <div class="user-profil-info-detail-username">@{{user.username}}</div>
+          <div class="user-profil-info-detail-name">{{ user.name }}</div>
+          <div class="user-profil-info-detail-username">
+            @{{ user.username }}
+          </div>
           <div class="user-profil-info-detail-bio">
-            {{user.bio}}
+            {{ user.bio }}
           </div>
           <div class="user-profil-info-detail-others">
             <div class="user-profil-info-detail-others-item">
@@ -41,7 +53,7 @@
             </div>
             <div class="user-profil-info-detail-others-item">
               <mat-icon svgIcon="xcalendar2"></mat-icon>
-              <span>{{user.birthDate | date}}</span>
+              <span>{{ user.birthDate | date }}</span>
             </div>
           </div>
           <div class="user-profil-info-detail-fw">
@@ -57,10 +69,27 @@
     </div>
     <div class="user-content">
       <div class="grid grid-cols-6 user-nav">
-        <div class="col-span-3 user-nav-item">Posts</div>
-        <div class="col-span-3 user-nav-item active">Likes</div>
+        <div
+          class="col-span-3 user-nav-item {{
+            contentType === 'posts' && 'active'
+          }}"
+          (click)="changeContentType('posts')"
+        >
+          Posts
+        </div>
+        <div
+          class="col-span-3 user-nav-item {{
+            contentType === 'likes' && 'active'
+          }}"
+          (click)="changeContentType('likes')"
+        >
+          Likes
+        </div>
       </div>
-      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+      <app-post
+        *ngFor="let post of contentType === 'posts' ? posts : likedPosts"
+        [post]="post"
+      ></app-post>
     </div>
   </div>
 </app-common-layout>

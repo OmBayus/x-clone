@@ -1,15 +1,4 @@
 <div class="follow-list">
     <h1>Who to follow</h1>
-    <div class="follow grid grid-cols-4 gap-1" *ngFor="let user of users">
-        <div class="follow-image" (click)="navigateToUser(user.username)">
-            <img src="assets/profil.png" alt="profil"/>
-        </div>
-        <div class="follow-info col-span-2" (click)="navigateToUser(user.username)">
-            <div class="follow-info-name">{{user.name}}</div>
-            <div class="follow-info-username">@{{user.username}}</div>
-        </div>
-        <div class="follow-button">
-            <button>Follow</button>
-        </div>
-    </div>
+    <app-follow-user *ngFor="let user of users" [user]="user"></app-follow-user>
 </div>

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, effect } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { PostService } from '../post.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
+import { LikeService } from '../like.service';
+import { FollowService } from '../follow.service';
 
 @Component({
   selector: 'app-user',
@@ -10,8 +12,13 @@ import { UserService } from '../user.service';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
+  contentType: 'posts' | 'likes' = 'posts';
+  hovered = false;
   posts: any[] = [];
+  likedPosts: any[] = [];
+  isFollowing = false;
   user: any = {
+    id: '',
     username: '',
     name: '',
     birthDate: '',
@@ -19,21 +26,31 @@ export class UserComponent {
     postCount: 0,
   };
   constructor(
-    private authService: AuthService,
+    private likeService: LikeService,
     private postService: PostService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public authService: AuthService,
+    private followService: FollowService
   ) {
     this.route.params.subscribe((params) => {
-      console.log(params['id']);
       this.getUser(params['id']);
+      this.contentType = 'posts';
+    });
+    effect(async () => {
+      this.followService.currentUserId();
+      if (this.user && this.user.username) {
+        this.isFollowing = await this.followService.isFollowing(
+          this.user.username
+        );
+      }
     });
   }
 
   async getUser(username: string) {
     const _user = await this.userService.getUser(username);
-    console.log(_user);
     this.user = {
+      id: _user.id,
       name: _user.name,
       username: _user.username,
       bio: _user.bio,
@@ -45,6 +62,34 @@ export class UserComponent {
 
   async getPosts(username: string) {
     this.posts = await this.postService.getUserPosts(username);
+    this.likedPosts = await this.likeService.getLikedPosts(username);
     this.user.postCount = this.posts.length;
+    if (username) {
+      this.isFollowing = await this.followService.isFollowing(username);
+    }
+  }
+
+  changeContentType(contentType: 'posts' | 'likes') {
+    this.contentType = contentType;
+  }
+
+  onMouseEnterFollowing() {
+    this.hovered = true;
+  }
+
+  onMouseLeaveFollowing() {
+    this.hovered = false;
+  }
+
+  follow() {
+    this.followService.followUser(this.user.id, () => {
+      this.isFollowing = true;
+    });
+  }
+
+  unfollow() {
+    this.followService.unfollowUser(this.user.id, () => {
+      this.isFollowing = false;
+    });
   }
 }
