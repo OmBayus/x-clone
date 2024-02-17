@@ -43,4 +43,13 @@ public class UserController {
             throw new RuntimeException(e);
         }
     }
+
+    @GetMapping("/stats/{username}")
+    public ResponseEntity<?> getUserStats(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok(userService.getUserStats(username));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

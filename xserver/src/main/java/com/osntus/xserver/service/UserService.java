@@ -2,20 +2,19 @@ package com.osntus.xserver.service;
 
 import com.osntus.xserver.dto.BaseResponse;
 import com.osntus.xserver.model.User;
+import com.osntus.xserver.repository.FollowRepository;
 import com.osntus.xserver.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final FollowRepository followRepository;
 
     public ResponseEntity<?> getUser(String username) {
         if (userRepository.existsByUsername(username)) {
@@ -40,7 +39,7 @@ public class UserService {
             List<User> users = userRepository.findAll();
             Set<User> randomUsers = new HashSet<>();
             Random random = new Random();
-            while (randomUsers.size() < 4 && users.size() > 0) {
+            while (randomUsers.size() < 4 && !users.isEmpty()) {
                 int randomIndex = random.nextInt(users.size());
                 User user = users.get(randomIndex);
                 users.remove(randomIndex);
@@ -50,5 +49,14 @@ public class UserService {
             }
             return ResponseEntity.ok(new BaseResponse<>("Random users found", randomUsers));
         }
+    }
+
+    public List<Long> getUserStats(String username) {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+
+        Long followerCount = followRepository.countByFollowedUser(user);
+        Long followingCount = followRepository.countByUserid(user);
+
+        return List.of(followerCount, followingCount);
     }
 }
