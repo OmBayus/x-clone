@@ -7,8 +7,8 @@
         </div>
       </div>
       <div class="col-span-7 nav-user-info">
-        <div class="nav-user-info-name">OmBayus</div>
-        <div class="nav-user-info-post">41 posts</div>
+        <div class="nav-user-info-name">{{user.name}}</div>
+        <div class="nav-user-info-post">{{user.postCount}} posts</div>
       </div>
     </div>
     <div class="user-profil">
@@ -16,16 +16,15 @@
       <div class="user-profil-info">
         <div class="user-profil-info-image">
           <img
-            src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_400x400.jpg"
+            src="assets/profil.png"
             alt="user image"
           />
         </div>
         <div class="user-profil-info-detail">
-          <div class="user-profil-info-detail-name">Omer</div>
-          <div class="user-profil-info-detail-username">@OmBayus</div>
+          <div class="user-profil-info-detail-name">{{user.name}}</div>
+          <div class="user-profil-info-detail-username">@{{user.username}}</div>
           <div class="user-profil-info-detail-bio">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {{user.bio}}
           </div>
           <div class="user-profil-info-detail-others">
             <div class="user-profil-info-detail-others-item">
@@ -42,7 +41,7 @@
             </div>
             <div class="user-profil-info-detail-others-item">
               <mat-icon svgIcon="xcalendar2"></mat-icon>
-              <span>Joined May 2021</span>
+              <span>{{user.birthDate | date}}</span>
             </div>
           </div>
           <div class="user-profil-info-detail-fw">
@@ -61,66 +60,7 @@
         <div class="col-span-3 user-nav-item">Posts</div>
         <div class="col-span-3 user-nav-item active">Likes</div>
       </div>
-      <div class="post grid grid-cols-7" *ngFor="let post of [1, 2, 3, 4]">
-        <div class="post-profil col-span-1">
-          <img
-            src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg"
-            alt="profile image"
-          />
-        </div>
-        <div class="post-content col-span-6">
-          <div class="post-content-username">
-            <span>John Doe</span>
-            <span>@johndoe</span>
-            <span>·</span>
-            <span>Jan 7</span>
-          </div>
-          <div class="post-content-text">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus minus
-            voluptates assumenda exercitationem, molestias quidem necessitatibus
-            numquam ab quos excepturi consequuntur tempora est unde illum
-            aspernatur obcaecati perferendis! Ea, eius.
-          </div>
-          <div class="post-content-actions grid grid-cols-5">
-            <div class="post-content-actions-icon">
-              <div>
-                <mat-icon svgIcon="xcomment"></mat-icon>
-              </div>
-              <span>2</span>
-            </div>
-            <div class="post-content-actions-icon">
-              <div>
-                <mat-icon svgIcon="xretweet"></mat-icon>
-              </div>
-              <span>3</span>
-            </div>
-            <div class="post-content-actions-icon">
-              <div>
-                <mat-icon svgIcon="xlike"></mat-icon>
-              </div>
-              <span>4</span>
-            </div>
-            <div class="post-content-actions-icon">
-              <div>
-                <mat-icon svgIcon="xview"></mat-icon>
-              </div>
-              <span>5</span>
-            </div>
-            <div class="post-content-actions-share">
-              <div class="post-content-actions-icon">
-                <div>
-                  <mat-icon svgIcon="xbookmark"></mat-icon>
-                </div>
-              </div>
-              <div class="post-content-actions-icon">
-                <div>
-                  <mat-icon svgIcon="xshare"></mat-icon>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-post *ngFor="let post of posts" [post]="post"></app-post>
     </div>
   </div>
 </app-common-layout>

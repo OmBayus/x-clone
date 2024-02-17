@@ -59,7 +59,7 @@ export class SidebarComponent {
 
   navigateTo(route: string) {
     if (route === '/user') {
-      this.router.navigateByUrl('/' + this.authService.currentUser()?.name);
+      this.router.navigateByUrl('/' + this.authService.currentUser()?.username);
     } else {
       this.router.navigateByUrl(route);
     }

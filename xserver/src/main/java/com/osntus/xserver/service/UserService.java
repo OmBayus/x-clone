@@ -40,8 +40,10 @@ public class UserService {
             List<User> users = userRepository.findAll();
             Set<User> randomUsers = new HashSet<>();
             Random random = new Random();
-            while (randomUsers.size() < 4) {
-                User user = users.get(random.nextInt(users.size()));
+            while (randomUsers.size() < 4 && users.size() > 0) {
+                int randomIndex = random.nextInt(users.size());
+                User user = users.get(randomIndex);
+                users.remove(randomIndex);
                 if (!user.getUsername().equals(username)) {
                     randomUsers.add(user);
                 }

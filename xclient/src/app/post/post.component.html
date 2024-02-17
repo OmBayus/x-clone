@@ -1,16 +1,16 @@
 <div class="post grid grid-cols-7">
     <div class="post-profil col-span-1" (click)="navigateToUser(post.username)">
       <img
-        src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg"
+        src="assets/profil.png"
         alt="profile image"
       />
     </div>
     <div class="post-content col-span-6">
       <div class="post-content-username" (click)="navigateToUser(post.username)">
-        <span>{{post.username}}</span>
+        <span>{{post.name}}</span>
         <span>@{{post.username}}</span>
         <span>·</span>
-        <span>{{post.date}}</span>
+        <span>{{post.date | date :'short' }}</span>
       </div>
       <div class="post-content-text">
         {{ post.text }}

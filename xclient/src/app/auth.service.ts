@@ -27,7 +27,11 @@ export class AuthService {
     }
     const token = this.cookieService.get('token');
     if (token) {
-      await this.authenticate();
+      try {
+        await this.authenticate();
+      } catch (e) {
+        return false;
+      }
     }
     if (this.currentUser()) {
       return true;
@@ -55,6 +59,9 @@ export class AuthService {
               token,
             });
             resolve();
+          })
+          .add(() => {
+            reject();
           });
       } else {
         resolve();

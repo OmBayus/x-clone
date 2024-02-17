@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-follow-list',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class FollowListComponent {
 
+  users: any[] = [];
+
+  constructor(private userService: UserService) {}
+
+  async ngOnInit() {
+    this.users = await this.userService.suggestion();
+  }
+  
 }

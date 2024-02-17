@@ -42,7 +42,7 @@ export class PostService {
     });
   }
 
-  async getUserPosts(username:string) {
+  async getUserPosts(username:string):Promise<any> {
     return new Promise((resolve) => {
       const token = this.cookieService.get('token');
       if (token) {
