@@ -1,7 +1,7 @@
 import { Component, ViewChild, effect } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { PostService } from '../post.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { LikeService } from '../like.service';
 import { FollowService } from '../follow.service';
@@ -31,7 +31,8 @@ export class UserComponent {
     private userService: UserService,
     private route: ActivatedRoute,
     public authService: AuthService,
-    private followService: FollowService
+    private followService: FollowService,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       this.getUser(params['id']);
@@ -91,5 +92,9 @@ export class UserComponent {
     this.followService.unfollowUser(this.user.id, () => {
       this.isFollowing = false;
     });
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 }
