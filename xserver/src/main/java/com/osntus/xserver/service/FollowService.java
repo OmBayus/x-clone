@@ -7,6 +7,7 @@ import com.osntus.xserver.repository.FollowRepository;
 import com.osntus.xserver.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,14 @@ public class FollowService {
 
         Optional<User> followedUser = userRepository.findById(followedId);
 
-        if (user.isEmpty()) return ResponseEntity.status(404).body(new BaseResponse<>("User can not found!"));
-        if (followedUser.isEmpty()) return ResponseEntity.status(404).body(new BaseResponse<>("User can not found for follow!"));
-        if (user.get().getId() == followedUser.get().getId()) return ResponseEntity.status(406).body(new BaseResponse<>("You can not follow yourself!"));
-        if (followRepository.existsFollowByFollowedUserAndUserid(followedUser.get(), user.get())) return ResponseEntity.status(406).body(new BaseResponse<>("User Already Following!"));
+        if (user.isEmpty())
+            return ResponseEntity.status(404).body(new BaseResponse<>("User can not found!"));
+        if (followedUser.isEmpty())
+            return ResponseEntity.status(404).body(new BaseResponse<>("User can not found for follow!"));
+        if (user.get().getId() == followedUser.get().getId())
+            return ResponseEntity.status(406).body(new BaseResponse<>("You can not follow yourself!"));
+        if (followRepository.existsFollowByFollowedUserAndUserid(followedUser.get(), user.get()))
+            return ResponseEntity.status(406).body(new BaseResponse<>("User Already Following!"));
 
         var follow = Follow
                 .builder()
@@ -62,7 +67,7 @@ public class FollowService {
         }
     }
 
-    public ResponseEntity<?> getFollowers(int userId){
+    public ResponseEntity<?> getFollowers(int userId) {
         List<Follow> followers = new ArrayList<>();
         try {
             for (Follow follow : followRepository.findAll()) {
@@ -80,12 +85,11 @@ public class FollowService {
         }
     }
 
-    public ResponseEntity<?> unfollowUser(Integer id, int userId) {
-        if (followRepository.existsById(String.valueOf(id)) && followRepository.findById(String.valueOf(id)).get().getUserid().getId() == userId ){
-            followRepository.deleteById(String.valueOf(id));
+    public ResponseEntity<?> unfollowUser(int id, int userId) {
+        if (followRepository.existsFollowByFollowedUserAndUserid(userRepository.findById(id).get(), userRepository.findById(userId).get())) {
+            followRepository.delete(followRepository.findByFollowedUserAndUserid(userRepository.findById(id).get(), userRepository.findById(userId).get()));
             return ResponseEntity.ok(new BaseResponse<>("User unfollowed!"));
-        }
-        else return ResponseEntity.status(404).body(new BaseResponse<>("Follow can not found!"));
+        } else return ResponseEntity.status(404).body(new BaseResponse<>("Follow can not found!"));
     }
 
     public Boolean isFollowing(String username, int userId) {

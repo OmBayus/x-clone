@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FollowRepository extends JpaRepository<Follow, String> {
     boolean existsFollowByFollowedUserAndUserid(User followeduserid, User userid);
+
+    Follow findByFollowedUserAndUserid(User user, User user1);
 }
