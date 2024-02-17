@@ -97,6 +97,14 @@
           }
         }
         &-icon:nth-child(3){
+          &.liked {
+            color: rgb(249, 24, 128);
+            div {
+              mat-icon {
+                color: rgb(249, 24, 128);
+              }
+            }
+          }
           &:hover {
             color: rgb(249, 24, 128);
             div {

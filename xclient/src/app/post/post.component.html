@@ -28,9 +28,9 @@
           </div>
           <span>0</span>
         </div>
-        <div class="post-content-actions-icon">
+        <div class="post-content-actions-icon {{isLiked ? 'liked':''}}" (click)="like()">
           <div>
-            <mat-icon svgIcon="xlike"></mat-icon>
+            <mat-icon svgIcon="{{isLiked ? 'xliked' :'xlike'}}"></mat-icon>
           </div>
           <span>{{ post.likes }}</span>
         </div>
