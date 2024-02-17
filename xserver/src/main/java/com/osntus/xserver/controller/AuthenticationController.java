@@ -25,4 +25,10 @@ public class AuthenticationController {
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(service.login(loginRequest));
     }
+
+    // access token decode
+    @GetMapping("/")
+    public ResponseEntity<?> decode(@RequestHeader("Authorization") String token) {
+        return ResponseEntity.ok(service.decode(token));
+    }
 }

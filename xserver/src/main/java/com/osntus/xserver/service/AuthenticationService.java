@@ -79,4 +79,7 @@ public class AuthenticationService {
         tokenRepository.save(token);
     }
 
+    public Object decode(String token) {
+        return userRepository.findByUsername(jwtService.extractUsername(token));
+    }
 }
