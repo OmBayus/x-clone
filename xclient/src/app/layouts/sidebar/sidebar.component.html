@@ -37,7 +37,7 @@
       <div class="profile-more-icon">
         <div></div>
       </div>
-      <div class="profile-more-item">Log out</div>
+      <div class="profile-more-item" (click)="logout()">Log out</div>
     </div>
   </div>
   <div class="profile-more-content" (click)="toggleProfileContent()" *ngIf="profile_content_open"></div>
