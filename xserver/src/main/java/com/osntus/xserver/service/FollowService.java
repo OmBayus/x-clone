@@ -9,7 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,29 +46,39 @@ public class FollowService {
     }
 
     public ResponseEntity<?> getFollows(int userId) {
+        List<Follow> follows = new ArrayList<>();
         try {
             for (Follow follow : followRepository.findAll()) {
                 if (follow.getUserid().getId() == userId) {
-                    return ResponseEntity.ok(new BaseResponse<>("Follows found!", followRepository.findAll()));
+                    follows.add(follow);
                 }
+            }
+            if (follows.isEmpty()) {
+                return ResponseEntity.status(404).body(new BaseResponse<>("Follows can not found!"));
+            } else {
+                return ResponseEntity.ok(new BaseResponse<>("Follows found!", follows));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return ResponseEntity.status(404).body(new BaseResponse<>("Follows can not found!"));
     }
 
     public ResponseEntity<?> getFollowers(int userId){
+        List<Follow> followers = new ArrayList<>();
         try {
             for (Follow follow : followRepository.findAll()) {
                 if (follow.getFollowedUser().getId() == userId) {
-                    return ResponseEntity.ok(new BaseResponse<>("Followers found!", followRepository.findAll()));
+                    followers.add(follow);
                 }
+            }
+            if (followers.isEmpty()) {
+                return ResponseEntity.status(404).body(new BaseResponse<>("Follows can not found!"));
+            } else {
+                return ResponseEntity.ok(new BaseResponse<>("Follows found!", followers));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return ResponseEntity.status(404).body(new BaseResponse<>("Followers can not found!"));
     }
 
     public ResponseEntity<?> unfollowUser(Integer id, int userId) {

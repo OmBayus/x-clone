@@ -1,8 +1,10 @@
 package com.osntus.xserver.controller;
 
+import com.osntus.xserver.model.User;
 import com.osntus.xserver.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,15 @@ public class UserController {
     public ResponseEntity<?> getAllUsers() {
         try {
             return userService.getAllUsers();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @GetMapping("/suggestion")
+    public ResponseEntity<?> getSuggestions(@AuthenticationPrincipal User user) {
+        try {
+            return userService.getRandomUsers(user.getUsername());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

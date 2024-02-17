@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -79,16 +82,21 @@ public class PostService {
         } else if (postRepository.findAll().isEmpty()) {
             return ResponseEntity.status(404).body(new BaseResponse<>("No posts found"));
         } else {
+            List<Post> posts = new ArrayList<>();
             try {
                 for (Post post : postRepository.findAll()) {
-                    if (post.getUsername().equals(username)) {
-                        return ResponseEntity.ok(new BaseResponse<>("Posts found!", postRepository.findAll()));
+                    if (Objects.equals(post.getUsername(), username)) {
+                        posts.add(post);
                     }
+                }
+                if (posts.isEmpty()) {
+                    return ResponseEntity.status(404).body(new BaseResponse<>("Posts can not found!"));
+                } else {
+                    return ResponseEntity.ok(new BaseResponse<>("Posts found!", posts));
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            return ResponseEntity.status(404).body(new BaseResponse<>("Posts can not found!"));
         }
     }
 
