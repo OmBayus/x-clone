@@ -48,6 +48,9 @@ export class SidebarComponent {
 
   profile_content_open = false;
 
+  name = '';
+  username = '';
+
   constructor(private authService: AuthService, private router: Router) {}
 
   toggleProfileContent() {
@@ -59,6 +62,14 @@ export class SidebarComponent {
       this.router.navigateByUrl('/' + this.authService.currentUser()?.name);
     } else {
       this.router.navigateByUrl(route);
+    }
+  }
+
+  ngOnInit() {
+    const user = this.authService.currentUser();
+    if (user) {
+      this.name = user.name;
+      this.username = user.username;
     }
   }
 

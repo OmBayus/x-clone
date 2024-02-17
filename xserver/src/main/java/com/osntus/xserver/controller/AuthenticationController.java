@@ -29,6 +29,6 @@ public class AuthenticationController {
     // access token decode
     @GetMapping("/")
     public ResponseEntity<?> decode(@RequestHeader("Authorization") String token) {
-        return service.decode(token);
+        return service.decode(token.split(" ")[1]);
     }
 }

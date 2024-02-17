@@ -1,6 +1,6 @@
 <header class="sidebar">
   <div class="navigation">
-    <div class="navigation-item">
+    <div class="navigation-item" (click)="navigateTo('/home')">
       <mat-icon
         aria-hidden="false"
         aria-label="Example home icon"
@@ -22,14 +22,11 @@
   <div class="profile">
     <div class="profile-settings" (click)="toggleProfileContent()">
       <div class="profile-image">
-        <img
-          src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg"
-          alt="profile image"
-        />
+        <img src="https://pbs.twimg.com/profile_images/1718922945177812992/aTaBgKrj_x96.jpg" alt="profile image" />
       </div>
       <div class="profile-info">
-        <div class="profile-name">Omer</div>
-        <div class="profile-nickname">@Ombayus1</div>
+        <div class="profile-name">{{name}}</div>
+        <div class="profile-nickname">@{{username}}</div>
       </div>
     </div>
     

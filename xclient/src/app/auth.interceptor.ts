@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const token = cookieService.get('token');
     req = req.clone({
         setHeaders: {
-            Authorization: `Token ${token}`
+            Authorization: `Bearer ${token}`
         }
     });
     return next(req);
