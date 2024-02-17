@@ -33,4 +33,9 @@ public class FollowController {
     public ResponseEntity<?> unfollowUser(@RequestParam Integer id, @AuthenticationPrincipal User user){
         return followService.unfollowUser(id, user.getId());
     }
+
+    @GetMapping("/isFollows/{username}")
+    public Boolean isFollowing(@PathVariable String username, @AuthenticationPrincipal User user){
+        return followService.isFollowing(username, user.getId());
+    }
 }

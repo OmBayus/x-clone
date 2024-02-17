@@ -7,7 +7,6 @@ import com.osntus.xserver.repository.FollowRepository;
 import com.osntus.xserver.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,5 +86,16 @@ public class FollowService {
             return ResponseEntity.ok(new BaseResponse<>("User unfollowed!"));
         }
         else return ResponseEntity.status(404).body(new BaseResponse<>("Follow can not found!"));
+    }
+
+    public Boolean isFollowing(String username, int userId) {
+
+        Optional<User> user = userRepository.findById(userId);
+        Optional<User> followedUser = userRepository.findByUsername(username);
+
+        if (user.isPresent() && followedUser.isPresent()) {
+            return followRepository.existsFollowByFollowedUserAndUserid(followedUser.get(), user.get());
+        }
+        return false;
     }
 }
