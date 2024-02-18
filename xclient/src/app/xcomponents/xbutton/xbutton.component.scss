@@ -1,0 +1,37 @@
+.xbutton{
+    border-radius: 50px;
+    background-color: #1d9bf0!important;
+    color: white!important;
+    border-color: rgba(0, 0, 0, 0);
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        background-color: #1d9cf0ce!important;
+    }
+}
+
+.xbutton-outline{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    background-color: transparent!important;
+    border-radius: 50px;
+    color: #1d9bf0!important;
+    border: 1px solid rgb(83, 100, 113)!important;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+        background-color: #1d9cf017!important;
+    }
+}

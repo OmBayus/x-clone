@@ -1,0 +1,57 @@
+<div class="post grid grid-cols-7">
+    <div class="post-profil col-span-1" (click)="navigateToUser(post.username)">
+      <img
+        src="assets/profil.png"
+        alt="profile image"
+      />
+    </div>
+    <div class="post-content col-span-6">
+      <div class="post-content-username" (click)="navigateToUser(post.username)">
+        <span>{{post.name}}</span>
+        <span>@{{post.username}}</span>
+        <span>·</span>
+        <span>{{post.date | date :'short' }}</span>
+      </div>
+      <div class="post-content-text">
+        {{ post.text }}
+      </div>
+      <div class="post-content-actions grid grid-cols-5">
+        <div class="post-content-actions-icon">
+          <div>
+            <mat-icon svgIcon="xcomment"></mat-icon>
+          </div>
+          <span>0</span>
+        </div>
+        <div class="post-content-actions-icon">
+          <div>
+            <mat-icon svgIcon="xretweet"></mat-icon>
+          </div>
+          <span>0</span>
+        </div>
+        <div class="post-content-actions-icon {{isLiked ? 'liked':''}}" (click)="like()">
+          <div>
+            <mat-icon svgIcon="{{isLiked ? 'xliked' :'xlike'}}"></mat-icon>
+          </div>
+          <span>{{ post.likes }}</span>
+        </div>
+        <div class="post-content-actions-icon">
+          <div>
+            <mat-icon svgIcon="xview"></mat-icon>
+          </div>
+          <span>0</span>
+        </div>
+        <div class="post-content-actions-share">
+          <div class="post-content-actions-icon">
+            <div>
+              <mat-icon svgIcon="xbookmark"></mat-icon>
+            </div>
+          </div>
+          <div class="post-content-actions-icon">
+            <div>
+              <mat-icon svgIcon="xshare"></mat-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

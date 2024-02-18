@@ -1,0 +1,100 @@
+<div class="register-dialog">
+  <div class="register-dialog-header">
+    <div class="close-button" (click)="closeDialog()">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="close"
+      ></mat-icon>
+    </div>
+    <div class="icon">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        class="r-4qtqp9 r-yyyyoo r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1nao33i r-rxcuwo r-1777fci r-m327ed r-494qqr"
+      >
+        <g>
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+          ></path>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="register-dialog-content">
+    <div class="register-dialog-content-header">
+      <h1>Sign up to X</h1>
+    </div>
+    <div class="register-dialog-content-input-field">
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" [(ngModel)]="name" />
+      </mat-form-field>
+    </div>
+    <div class="register-dialog-content-input-field">
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" [(ngModel)]="email" />
+      </mat-form-field>
+    </div>
+    <div class="register-dialog-content-input-field">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input [(ngModel)]="username" matInput placeholder="Username" />
+      </mat-form-field>
+    </div>
+
+    <div class="register-dialog-content-input-field">
+      <mat-form-field class="example-form-field">
+        <mat-label>Birthdate</mat-label>
+        <input
+          matInput
+          [matDatepicker]="datepicker"
+          (dateChange)="changeDate($event)"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepicker> </mat-datepicker>
+      </mat-form-field>
+      <div class="register-dialog-content-input-field">
+        <mat-form-field class="example-full-width">
+          <mat-label>Bio</mat-label>
+          <textarea [(ngModel)]="bio" matInput placeholder="Bio"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="register-dialog-content-input-field">
+        <mat-form-field class="example-full-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            [(ngModel)]="password"
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="register-dialog-content-input-field">
+        <mat-form-field class="example-full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            placeholder="Confirm Password"
+            [(ngModel)]="confirmpassword"
+            type="password"
+          />
+        </mat-form-field>
+      </div>
+      <div class="register-dialog-content-input-field">
+        <button class="register-dialog-content-button" (click)="register()">
+          Sign up
+        </button>
+      </div>
+      <div class="register-dialog-content-signup">
+        Already have an account? <a href="#">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>

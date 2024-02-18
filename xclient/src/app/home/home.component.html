@@ -1,0 +1,58 @@
+<app-common-layout>
+  <div class="home">
+    <div class="grid grid-cols-7 nav">
+      <div class="col-span-3 nav-item">For you</div>
+      <div class="col-span-3 nav-item active">Following</div>
+      <div class="nav-settings">
+        <div class="nav-settings-button">
+          <mat-icon svgIcon="xsettings"></mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <div class="share grid grid-cols-7">
+      <div class="share-profil col-span-1">
+        <img
+          src="assets/profil.png"
+          alt="profile image"
+        />
+      </div>
+      <div class="share-content col-span-6">
+        <div class="share-content-input">
+          <textarea
+          [(ngModel)]="postContent"
+            (input)="auto_grow($event)"
+            placeholder="What's happening?"
+          ></textarea>
+        </div>
+        <div class="share-content-buttons">
+          <div class="share-content-buttons-icons">
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="ximage"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xgif"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xpoll"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xsmile"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xcalendar"></mat-icon>
+            </div>
+            <div class="share-content-buttons-icons-icon-disabled">
+              <mat-icon svgIcon="xlocation"></mat-icon>
+            </div>
+          </div>
+          <div class="share-content-buttons-post">
+            <button (click)="post()" [disabled]="!postContent">Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-post *ngFor="let post of posts" [post]="post"></app-post>
+  </div>
+</app-common-layout>

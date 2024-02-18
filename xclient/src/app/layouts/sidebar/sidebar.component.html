@@ -1,0 +1,41 @@
+<header class="sidebar">
+  <div class="navigation">
+    <div class="navigation-item" (click)="navigateTo('/home')">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        svgIcon="x"
+      ></mat-icon>
+    </div>
+    <div class="navigation-item {{item.disabled ? 'disabled' : ''}}" *ngFor="let item of navigationList" (click)="!item.disabled && navigateTo(item.route)">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        fontIcon="{{ item.icon }}"
+      ></mat-icon>
+      <span>{{ item.name }}</span>
+    </div>
+    <div [ngStyle]="{ 'margin-top': '10px' }">
+      <app-xbutton text="Post" [style]="{ width: '80%' }" (click)="navigateTo('/home')"></app-xbutton>
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-settings" (click)="toggleProfileContent()">
+      <div class="profile-image">
+        <img src="assets/profil.png" alt="profile image" />
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">{{name}}</div>
+        <div class="profile-nickname">@{{username}}</div>
+      </div>
+    </div>
+    
+    <div class="profile-more" *ngIf="profile_content_open">
+      <div class="profile-more-icon">
+        <div></div>
+      </div>
+      <div class="profile-more-item" (click)="logout()">Log out</div>
+    </div>
+  </div>
+  <div class="profile-more-content" (click)="toggleProfileContent()" *ngIf="profile_content_open"></div>
+</header>
