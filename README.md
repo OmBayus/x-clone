@@ -7,7 +7,7 @@
 ## Demo
 
 <p align="center">
-<img src=" " />
+<img src="./demo.gif" />
 </p>
 
 ## Technologies
